@@ -1,0 +1,57 @@
+.head_v{
+    display:flex;
+    flex-direction: row;
+}
+.head_v>h1{
+   padding:15px;
+}
+.head_v>button{
+    height:25%;
+    width:15%;
+    margin-top:2%;
+    margin-left:60%;
+}
+.head_v>button:hover{
+    background-color: #006FCB;
+    cursor:pointer;
+    color:white;
+
+}
+.status_up{
+    /* height:5%; */
+    width:10%;
+    display:flex;
+    flex-direction: row;
+    padding:30px;
+    margin-left:5px;
+    margin-top:0px;
+}
+.status_up>input:hover{
+    background-color: #006FCB;
+    cursor:pointer;
+    color:white;
+}
+table {
+    border:  1px solid #B6B6B6;
+    background:  #FFFFFF;
+    margin-left: 35px;
+    margin-top:10px;
+    border: none;
+    width:95%;
+     
+    }
+    tr > * {
+      /* border: 1px solid; */
+      border: none;
+      /* border-bottom: grey ; */
+    text-align: center;
+    padding:5px;
+    }
+    
+    .job_code_gj{
+        color: #006FCB;
+    }
+    
+    .job_status_gj{
+        color: #FFB800;
+    }

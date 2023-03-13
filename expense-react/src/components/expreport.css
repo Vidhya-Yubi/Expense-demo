@@ -1,0 +1,22 @@
+.land_v>h1{
+text-align: center;
+padding:1%;
+}
+.land_v>button{
+    margin-top: 2%;
+    margin-left:85%;
+    width:200px;
+    font-weight:bold;
+    background-color:#EFF6FF;
+    cursor: pointer;
+    font-weight: bold;
+    width:200px;
+    height:50px;
+    font-size: large;
+
+}
+.land_v>button:hover{
+    background-color: #006FCB;
+    cursor: pointer;
+    color:white;
+}

@@ -1,0 +1,18 @@
+.exp_vid{
+    padding:35px;
+    /* height: 5px; */
+   
+}
+.exp_vid>button{
+    margin-right: 10px;
+}
+.exp_vid>button:hover{
+    background-color: #006FCB;
+    cursor: pointer;
+    color:white;
+}
+
+.exp_vid>input{
+    margin-left: 800px;
+    margin-right: 10px;
+}
