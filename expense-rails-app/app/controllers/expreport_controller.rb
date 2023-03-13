@@ -3,7 +3,7 @@ class ExpreportController < ApplicationController
     skip_before_action :verify_authenticity_token
     def index 
         current_user=User.find_by_id(session[:current_user_id])  
-        exprep_user = Expreport.find_by('user_id': current_user&.id)   # &.id  If the object can be nil, use safe navigation operator &.
+        exprep_user = Expreport.where('user_id': current_user&.id)   # &.id  If the object can be nil, use safe navigation operator &.
         if current_user.usertype == "1" 
             render json: {data: Expreport.all, status: 200} 
         else 
@@ -25,7 +25,8 @@ class ExpreportController < ApplicationController
             # usr[:user_id] = :current_user_id
             exprep = Expreport.create(
             'reportname': params[:reportname],
-            'description': params[:description],
+            'content': params[:content],
+            'comment': params[:comment],
             'user_id': current_user.id
             )
             puts exprep
@@ -39,11 +40,12 @@ class ExpreportController < ApplicationController
         current_user=User.find_by_id(session[:current_user_id]) 
         exprep = Expreport.where('user_id': current_user.id) 
         er = Expreport.find(params[:id].to_i)
-        if (exprep.include?(er))
+        if ((er))
 
             er.update(
             'reportname': params[:reportname],
-            'description': params[:description]
+            'content': params[:content],
+            'comment': params[:comment]
             )
             puts er
             render json: {message: "Expreport updated"}, status: 201

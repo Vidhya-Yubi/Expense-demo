@@ -6,7 +6,23 @@ class ExpenseController < ApplicationController
         exprep_user = Expreport.find_by('user_id': current_user&.id)
         exp =  Expense.where('expreport_id': exprep_user&.id)
         if current_user.usertype == "1" 
-            render json: {data: Expense.all} 
+            extra = User.joins(:expreports).joins(:expenses).select("Users.name, Users.department, Users.emp_id, Expenses.category, Expenses.date,Expenses.amount,Expenses.description,Expenses.id,Expenses.status")
+            # ParentModel.joins(:child_models).select("parent_models.*, child_models.column1, child_models.column2")
+            # ext = extra.uniq
+            # new_extra = extra.joins(":expenses WHERE expenses.expreport_id = #{extra.id}").select("extras.*, expenses.*")
+            # puts "extra#{ext}" 
+            # puts "new_extra#{new_extra}"    
+            # Reservation.joins(:user).joins(:table).select("tables.seats AS table_seats")
+            # result = []
+            # Expense.all.each { |n| puts "#{n.expreport.user.name},#{n.expreport.user.emp_id},#{n.expreport.user.department}" }
+            # es = Expense.joins(:expreport).joins(:user).select("expense.expreport.user.name, expense.expreport.user.department")
+            # puts "es#{es}"
+            # Expense.all.each { |n| puts d = "#{n.expreport.user.name},#{n.expreport.user.emp_id},#{n.expreport.user.department}"
+            # result.push[d] }
+             
+            # numbers.each { |n| puts n }
+            # puts "****************"result1
+            render json: {data: extra.all} 
         else 
            render json: {data: exp} 
         end
@@ -25,6 +41,8 @@ class ExpenseController < ApplicationController
     def create
         current_user=User.find_by_id(session[:current_user_id]) 
         exprep_user = Expreport.find_by('user_id': current_user.id)
+        puts " 88888888888"
+        puts exprep_user.all
  
         if current_user
             exp = Expense.create(
@@ -33,6 +51,7 @@ class ExpenseController < ApplicationController
             'date': params[:date],
             'amount': params[:amount],
             'description': params[:description],
+            'file': params[:file],
             'status': "pending",
             'expreport_id': exprep_user.id
             )
@@ -73,11 +92,44 @@ class ExpenseController < ApplicationController
             er.destroy
             render json: {message: "Expense deleted"}, status: 200
         else 
-            render json: {message: "Not authorised to delete expense details"}, status: 401
+            render json: {error: ["Not authorised to delete expense details"]}, status: 401
         end
    
     end
+    def approval
+        current_user=User.find_by_id(session[:current_user_id])  
+        exp = Expense.find(params[:id].to_i)  
+        # emp = User.find_by(id: exp.expreport_id)  
+        # emp_email = emp.email
+        # extra = User.joins(:expreports).joins(:expenses).select("Users.name, Users.department, Users.emp_id, Expenses.category, Expenses.date,Expenses.amount,Expenses.description,Expenses.id,Expenses.status")
+        if current_user.usertype == "1"
+            exp.update(
+            'status': "approved"
+            )
+            puts p
+            VidMailer.status_email(exp).deliver_now
+            render json: {message: "Status Updated Successfully"}, status: 201
+        else 
+            render json: {error: ["Not authorised to update status"]}, status:401
+        end
 
+    end 
+    def rejected
+        current_user=User.find_by_id(session[:current_user_id])  
+        exp = Expense.find(params[:id].to_i)    
+        # emp = User.find_by(id: exp.id)  
+        if current_user.usertype == "1"
+            exp.update(
+            'status': "rejected"
+            )
+            puts p
+            VidMailer.status_email(exp).deliver_now
+            render json: {message: "Status Updated Successfully"}, status: 201
+        else 
+            render json: {error: ["Not authorised to update status"]}, status:401
+        end
+
+    end
 
 
     # private

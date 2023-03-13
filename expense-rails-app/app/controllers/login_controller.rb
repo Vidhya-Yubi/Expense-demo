@@ -13,11 +13,12 @@ class LoginController < ApplicationController
             render json: "User account does not exit", status: 422
         else 
             if (uval.authenticate(params[:password]))
-                session[:current_user_id] = uval.id
+                session[:current_user_id] = uval.id 
+                puts uval.usertype
 
-                render json: "Login successfull!", status: 200
+                render json: {data: uval.usertype, message:"Login successfull!"}, status: 200
             else
-                render json: "Wrong credentials!", status: 401
+                render json: {error: ["Invalid username or password"]}, status: 401
             end
 
         end

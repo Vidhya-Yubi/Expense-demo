@@ -30,7 +30,7 @@ class UserController < ApplicationController
             puts d 
             render json: {message: "Data Added Successfully"}, status: 201
         else 
-            render json: {message: "Not authorised to add Data"}, status:401
+            render json: {error: ["Not authorised to add Data"]}, status:401
         end
     end
 
@@ -51,7 +51,7 @@ class UserController < ApplicationController
             puts p
             render json: {message: "Data Updated Successfully"}, status: 201
         else 
-            render json: {message: "Not authorised to update Data"}, status:401
+            render json: {error: ["Not authorised to update Data"]}, status:401
         end
 
     end
@@ -62,7 +62,7 @@ class UserController < ApplicationController
             p = User.find(params[:id])
             render json: p, status: 200
         else 
-            render json: {message: "Not authorised to view current user"}, status: 401
+            render json: {error: ["Not authorised to view current user"]}, status: 401
         end
     end
 
@@ -73,7 +73,7 @@ class UserController < ApplicationController
             p.destroy
             render json: {message: "User deleted"}, status: 200
         else 
-            render json: {message: "Not authorised to delete user details"}, status: 401
+            render json: {error: ["Not authorised to delete user details"]}, status: 401
         end
    
     end
