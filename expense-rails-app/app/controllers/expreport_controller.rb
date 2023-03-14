@@ -5,8 +5,16 @@ class ExpreportController < ApplicationController
         current_user=User.find_by_id(session[:current_user_id])  
         exprep_user = Expreport.where('user_id': current_user&.id)   # &.id  If the object can be nil, use safe navigation operator &.
         if current_user.usertype == "1" 
-            render json: {data: Expreport.all, status: 200} 
+            ex_rep = User.joins(:expreports).select("Users.name, Users.emp_id, Expreports.*")
+
+            # render json: {data: Expreport.all, status: 200} 
+            render json: {data: ex_rep, status: 200} 
+
         else 
+            # puts "*******************"exprep_user.user.name
+            # ex_rep = User.joins(:expreports).on('user_id': current_user&.id)
+            # exrep1 = ex_rep.where('user_id': current_user&.id)
+            # render json: {data: ex_rep, status: 200} 
             render json: {data: exprep_user, status: 200} 
         end
    
@@ -16,6 +24,12 @@ class ExpreportController < ApplicationController
     #         exprep_user = Expreport.find_by('user_id': current_user.id)      
     #         render json: exprep_user
     #     end
+    end 
+    def viewexp 
+        exprep1 = Expreport.find(params[:id])
+        exp =  Expense.where('expreport_id': exprep1&.id)
+        render json: exp
+
     end
     def create
         current_user=User.find_by_id(session[:current_user_id])  
@@ -42,7 +56,7 @@ class ExpreportController < ApplicationController
         er = Expreport.find(params[:id].to_i)
         if ((er))
 
-            er.update(
+            er.update!(
             'reportname': params[:reportname],
             'content': params[:content],
             'comment': params[:comment]

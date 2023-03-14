@@ -3,13 +3,13 @@
     flex-direction: row;
 }
 .head_v>h1{
-   padding:15px;
+   padding:10px;
 }
 .head_v>button{
     height:25%;
     width:15%;
     margin-top:2%;
-    margin-left:60%;
+    margin-left:20%;
 }
 .head_v>button:hover{
     background-color: #006FCB;

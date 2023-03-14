@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   # put "status" , to:"expense#approval"
   put 'approve/:id', action: :approval, controller: 'expense'
   put 'rejected/:id', action: :rejected, controller: 'expense'
+  get 'viewexp/:id', action: :viewexp, controller: 'expreport'
 end

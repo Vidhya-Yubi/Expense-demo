@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+// nnot used - reference to upload attachments
 function FileUpload() {
   const [file, setFile] = useState(null);
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useLocation} from "react-router-dom";
 import axios from "axios";
 import './signup.css';
 import Header from "./Header";
@@ -8,6 +8,9 @@ import {Link} from "react-router-dom";
 
 
 export default function Addexp() {
+   const location = useLocation();
+    const repo = location.state;
+    let repoid = repo.id
 
   // let [addExpData, setAddExpData] = useState({});
   const navigate = useNavigate();
@@ -39,6 +42,8 @@ export default function Addexp() {
     formData.append("date", date);
     formData.append("amount",amount);
     formData.append("description",description);
+    formData.append("expreport_id",repoid);
+
 
     axios.post('/expense', formData, {
       headers: {

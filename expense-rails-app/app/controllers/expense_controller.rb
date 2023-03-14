@@ -8,7 +8,7 @@ class ExpenseController < ApplicationController
         if current_user.usertype == "1" 
             extra = User.joins(:expreports).joins(:expenses).select("Users.name, Users.department, Users.emp_id, Expenses.category, Expenses.date,Expenses.amount,Expenses.description,Expenses.id,Expenses.status")
             # ParentModel.joins(:child_models).select("parent_models.*, child_models.column1, child_models.column2")
-            # ext = extra.uniq
+            ext = extra.uniq
             # new_extra = extra.joins(":expenses WHERE expenses.expreport_id = #{extra.id}").select("extras.*, expenses.*")
             # puts "extra#{ext}" 
             # puts "new_extra#{new_extra}"    
@@ -22,7 +22,9 @@ class ExpenseController < ApplicationController
              
             # numbers.each { |n| puts n }
             # puts "****************"result1
-            render json: {data: extra.all} 
+            # render json: {data: extra.all} 
+            render json: {data: ext} 
+
         else 
            render json: {data: exp} 
         end
@@ -41,8 +43,8 @@ class ExpenseController < ApplicationController
     def create
         current_user=User.find_by_id(session[:current_user_id]) 
         exprep_user = Expreport.find_by('user_id': current_user.id)
-        puts " 88888888888"
-        puts exprep_user.all
+        # puts " 88888888888"
+        # puts exprep_user.all
  
         if current_user
             exp = Expense.create(
@@ -53,7 +55,7 @@ class ExpenseController < ApplicationController
             'description': params[:description],
             'file': params[:file],
             'status': "pending",
-            'expreport_id': exprep_user.id
+            'expreport_id': params[:expreport_id]
             )
             puts exp
             render json: {message: "Expenses added"}, status: 201

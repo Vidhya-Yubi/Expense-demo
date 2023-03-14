@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Comments from "./Comments";
 import Header from "./Header";
 import './comments.css'
@@ -23,21 +23,27 @@ export default function Expreport() {
         }
         fetchData()
     }, [])
-    function view_exp() {
-        navigate("/expense");
+    // function view_exp() {
+    //     navigate("/expense");
 
-    }
+    // }
     return (
         <>
         <Header />
         {/* <button onClick={logout_v}>Logout</button> 
         <button onClick={create_exp}>Add new expenses </button>     */}
 
-      <h2> Hi User, Welcome to expense reports!</h2>
-      <button style={{marginLeft: '1250px' }}className="comment-button" onClick={view_exp}> View Expenses</button>
+      <h2> Hi, Welcome to expense reports!</h2>
+      {/* <button style={{marginLeft: '1250px' }}className="comment-button" onClick={view_exp}> View Expenses</button> */}
+      <Link to="/addrep">
+        <button> Add Expense Report</button>
+      </Link>
       <table>
                 <thead>
-                    <tr><th>Report name</th>
+                    <tr >
+                        {/* <th>Employee name</th>
+                        <th>Employee ID</th> */}
+                        <th>Report name</th>
                         <th>DESCRIPTION</th>
                         {/* <th><button onClick={view_exp}> View Expenses</button></th> */}
                     </tr>
@@ -45,8 +51,26 @@ export default function Expreport() {
                 {exprepData.length ? (exprepData.map((ele) =>
                 (
                     < tbody >
-                        <tr><td className="exp_code_gj">{ele.reportname}</td>
+                        <tr key={ele.id}>
+                            <td className="exp_code_gj">{ele.reportname}</td>
+                            {/* <td>{ele.emp_id}</td>
+                            <td>{ele.reportname}</td> */}
                             <td>{ele.content}</td>
+                            <td>
+                            <Link to="/editrep" state={ele}>
+                            <button>Edit Report</button>
+                             </Link></td>
+                             <td>
+                             <Link to="/addexp" state={ele}>
+                            <button>Add expense</button>
+                             </Link>
+                             </td>
+                            <td>
+                             <Link to="/expense" state={ele}><button> View Expenses</button></Link>
+                            </td>
+                            
+                            {/* <td><button onClick={view_exp}> View Expenses</button>
+                            </td> */}
                         </tr>
                     </tbody>
 
@@ -56,6 +80,8 @@ export default function Expreport() {
                         <tr>
                             <td className="exp_code_gj">No data</td>
                             <td>No data</td>
+                            {/* <td>No data</td>
+                            <td>No data</td> */}
                             {/* <td>No data</td> */}
                         </tr>
                     </tbody >
@@ -63,7 +89,7 @@ export default function Expreport() {
                 }
         </table>
 
-        <Comments />
+        {/* <Comments /> */}
     </>
     )
 }

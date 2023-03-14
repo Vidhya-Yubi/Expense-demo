@@ -10,6 +10,10 @@ import Expreport from "./components/Expreport";
 import Updateexp from './components/Updateexp';
 import Comments from './components/Comments';
 // import Fileup from './components/Fileup';
+import Editrep from './components/Exp_report/Editrep';
+import Addrep from './components/Exp_report/Addrep';
+import Addcom from './components/Exp_report/Addcom';
+
 
 function App() {
   return (
@@ -23,7 +27,10 @@ function App() {
         <Route element={<Expreport />} path="/expreport" />
         <Route element={<Updateexp />} path="/updateexp" />
         <Route element={<Comments />} path="/comments" />
-        {/* <Route element={<Fileup />} path="/fileup" /> */}
+        <Route element={<Editrep />} path="/editrep" />
+        <Route element={<Addrep />} path="/addrep" />
+        <Route element={<Addcom />} path="/addcom" />
+
 
       </Routes>
 

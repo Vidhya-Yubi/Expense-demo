@@ -1,17 +1,23 @@
 import React, {useState} from 'react';
+import { useNavigate , useLocation} from "react-router-dom";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import Header from './Header';
 
 const Updateexp = () => {
         // let [exp, setExp] = useState({});
+        const location = useLocation();
+       const upexp = location.state;
+       let upid = upexp.id
         const [file, setFile] = useState(null);
         const [category, setCategory] = useState("");
         const [invoicenumber, setInvoicenumber] = useState("");
         const [date, setDate] = useState("");
         const [amount, setAmount] = useState("");
-        const [id, setId] = useState("");
-        const [description, setDescription] = useState("");        // const handleChange = (e) => {
+        // const [id, setId] = useState("");
+        const [description, setDescription] = useState("");  
+      
+        // const handleChange = (e) => {
         //     // let no = e.target.id;
         //     setExp({
         //         ...exp,
@@ -30,10 +36,10 @@ const Updateexp = () => {
             formData.append("date", date);
             formData.append("amount",amount);
             formData.append("description",description);
-            formData.append("id",id);
+            formData.append("id",upid);
 
         
-            axios.put(`/expense/${id}`, formData, {
+            axios.put(`/expense/${upid}`, formData, {
               headers: {
                 'Content-Type': 'multipart/form-data'
               }
@@ -59,8 +65,8 @@ const Updateexp = () => {
             <h2> Enter expense id and details to update:</h2>
         {/* <div className="contain_v"> */}
          <div className="acc_details">
-         <label> Expense ID </label><br></br>
-          <input type="integer" name="id" onChange={(e) => setId(e.target.value)} /><br></br>
+         {/* <label> Expense ID </label><br></br>
+          <input type="integer" placeholder={upid} name="id" onChange={(e) => setId(e.target.value)} /><br></br> */}
           <label> Expense category </label><br></br>
           <input type="text" name="category" onChange={(e) => setCategory(e.target.value)} /><br></br>
           <label> Invoice number </label><br></br>
