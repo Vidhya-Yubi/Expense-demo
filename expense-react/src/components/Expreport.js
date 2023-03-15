@@ -68,6 +68,7 @@ export default function Expreport() {
                             <td>
                              <Link to="/expense" state={ele}><button> View Expenses</button></Link>
                             </td>
+                            <td><Link to="/comments" state={ele}><button> Add comments</button></Link></td>
                             
                             {/* <td><button onClick={view_exp}> View Expenses</button>
                             </td> */}

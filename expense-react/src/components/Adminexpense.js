@@ -112,8 +112,8 @@ export default function Adminexpense() {
                             <td>{ele.department}</td>
                             <td>{ele.description}</td>
                             <td style={{ color: getColor(ele.status) }}>{ele.status}</td>
-                            <td><button onClick={() => updateStatus(ele.id)}>Approve</button></td>
-                            <td><button onClick={() => rejectStatus(ele.id)}>Approve</button></td>
+                            <td><button onClick={() => updateStatus(ele.id)}>APPROVE</button></td>
+                            <td><button onClick={() => rejectStatus(ele.id)}>REJECT</button></td>
 
                         </tr>
                     </tbody>

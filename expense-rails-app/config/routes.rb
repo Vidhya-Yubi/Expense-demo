@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   resources :login 
   resources :logout
   resources :expreport
-  resources :status
+  resources :status 
+  resources :comment
   resources :expense #do
   #   member do
   #     put 'approval'

@@ -29,7 +29,7 @@ function App() {
         <Route element={<Comments />} path="/comments" />
         <Route element={<Editrep />} path="/editrep" />
         <Route element={<Addrep />} path="/addrep" />
-        <Route element={<Addcom />} path="/addcom" />
+        {/* <Route element={<Addcom />} path="/addcom" /> */}
 
 
       </Routes>

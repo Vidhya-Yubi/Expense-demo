@@ -73,9 +73,9 @@ function Editrep() {
             <div>
             <button type="submit" onClick={handleDelete}>Delete Report</button>
             </div>
-            <Link to="/addcom">
+            {/* <Link to="/addcom">
             <button>Add comment</button>
-            </Link>
+            </Link> */}
         </div>
     )
 }
