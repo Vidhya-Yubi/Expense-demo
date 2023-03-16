@@ -57,7 +57,10 @@ class ExpenseController < ApplicationController
             'status': "pending",
             'expreport_id': params[:expreport_id]
             )
-            puts exp
+            # puts " 88888888888"
+            puts exp.id
+            exp_id = exp.id
+            # StatusUpdateJob.perform_later(exp_id)
             render json: {message: "Expenses added"}, status: 201
         else
             render json: {message: "Expenses not added"}
@@ -109,7 +112,8 @@ class ExpenseController < ApplicationController
             'status': "approved"
             )
             puts p
-            VidMailer.status_email(exp).deliver_now
+            SendEmailJob.perform_later(exp)
+            # VidMailer.status_email(exp).deliver_later
             render json: {message: "Status Updated Successfully"}, status: 201
         else 
             render json: {error: ["Not authorised to update status"]}, status:401
@@ -125,7 +129,9 @@ class ExpenseController < ApplicationController
             'status': "rejected"
             )
             puts p
-            VidMailer.status_email(exp).deliver_now
+            SendEmailJob.perform_later(exp)
+
+            # VidMailer.status_email(exp).deliver_later
             render json: {message: "Status Updated Successfully"}, status: 201
         else 
             render json: {error: ["Not authorised to update status"]}, status:401

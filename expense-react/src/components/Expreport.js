@@ -32,7 +32,9 @@ export default function Expreport() {
         <Header />
         {/* <button onClick={logout_v}>Logout</button> 
         <button onClick={create_exp}>Add new expenses </button>     */}
-
+        <Link to="/adminexpense">
+        <button> Go BACK!</button>
+        </Link>  
       <h2> Hi, Welcome to expense reports!</h2>
       {/* <button style={{marginLeft: '1250px' }}className="comment-button" onClick={view_exp}> View Expenses</button> */}
       <Link to="/addrep">
