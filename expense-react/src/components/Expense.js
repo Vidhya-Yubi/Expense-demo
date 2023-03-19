@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate ,useLocation, Link} from "react-router-dom";
+import { useLocation, Link} from "react-router-dom";
 import axios from 'axios';
 import Header from "./Header";
 import './expense.css';
@@ -8,9 +8,9 @@ const Expense = () => {
     const location = useLocation();
     const re = location.state;
     let expid1 = re.id
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     let [expenseData, setExpenseData] = useState([])
-    let [delStatus, setDelStatus] = useState({});
+    // let [delStatus, setDelStatus] = useState({});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,7 +19,7 @@ const Expense = () => {
             setExpenseData(res.data)
         }
         fetchData()
-    }, [])
+    }, [expid1])
     // const handleDelete = (e) => {
     //     setDelStatus({
     //         ...delStatus,
@@ -61,7 +61,12 @@ const Expense = () => {
     <>
         <Header />
         <h2 style={{padding: '5px'}}> Hi, Welcome user!</h2>
-
+        <Link to="/expreport">
+        <button> Go BACK!</button>
+        </Link>
+        {/* <Link to="/readblob">
+        <button> View file uploaded!</button>
+        </Link> */}
         {/* <button onClick={logout_v}>Logout</button>  */}
         <div className="exp_vid">
         {/* <button onClick={create_exp}>Add new expenses </button>     */}
@@ -94,6 +99,11 @@ const Expense = () => {
                              </Link>
                              </td>
                             <td><button onClick={() => delete_exp(ele.id)}>Delete</button> </td>
+                            <td>
+                             <Link to="/readblob" state={ele}>
+                            <button>View attached file</button>
+                             </Link>
+                             </td>
                          
                         </tr>
                     </tbody>

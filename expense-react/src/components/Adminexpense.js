@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate} from "react-router-dom";
-// import {Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import axios from 'axios';
 import Searchbox from "./Searchbox";
@@ -14,20 +14,28 @@ export default function Adminexpense() {
         let [expenseData, setExpenseData] = useState([])
         let [upStatus, setUpStatus] = useState({});
         let [inputValue, setinputValue] = useState('')
-        const handleUpdate = (e) => {
-            setUpStatus({
-                ...upStatus,
-                [e.target.name]: e.target.value,
-              });
-        }
-        console.log(upStatus);
+        // const handleUpdate = (e) => {
+        //     setUpStatus({
+        //         ...upStatus,
+        //         [e.target.name]: e.target.value,
+        //       });
+        // }
+        // console.log(upStatus);
         async function updateStatus(appid) {
+            try{
             let send = await axios.put(`/approve/${appid}`)
             navigate('/adminexpense');
+            }catch (error) {
+                alert("Approve status failed")
+            }
 
         }
         async function rejectStatus(rejid) {
+            try{
             let send = await axios.put(`/rejected/${rejid}`)
+            }catch (error) {
+                alert("Reject status failed")
+            }
         }
         useEffect(() => {
             const fetchData = async () => {
@@ -40,12 +48,12 @@ export default function Adminexpense() {
         }, [])
     
 
-        async function logout_v() {
+        // async function logout_v() {
 
-                let res = await axios.get('/logout');
-                console.log(res, "res");
-                navigate('/logout');
-        }
+        //         let res = await axios.get('/logout');
+        //         console.log(res, "res");
+        //         navigate('/logout');
+        // }
         function create_v() {
                 navigate("/signup");
  
@@ -73,10 +81,11 @@ export default function Adminexpense() {
             <Header />
                 <div className="land_v">
                     <div className="head_v">
-                     <h1> Hi, Welcome Admin!</h1>   
-                     <button onClick={create_v}style={{ height: '35px'}}>Add new employee </button>    
+                     <h1> Hi, Welcome Admin!</h1>
+                     <div className="add_e">
+                     <button onClick={create_v}style={{ height: '35px'}}>Add new employee </button> 
                      <button onClick={view_exp}style={{ height: '35px'}}>View Expense Report </button>    
-
+                     </div>   
                     {/* <button onClick={logout_v}>Logout</button>  */}
                     </div>
                     {/* <div className="sea_v"> */}
@@ -114,6 +123,9 @@ export default function Adminexpense() {
                             <td style={{ color: getColor(ele.status) }}>{ele.status}</td>
                             <td><button onClick={() => updateStatus(ele.id)}>APPROVE</button></td>
                             <td><button onClick={() => rejectStatus(ele.id)}>REJECT</button></td>
+                            <Link to="/readblob" state={ele}>
+                            <button>View attached file</button>
+                             </Link>
 
                         </tr>
                     </tbody>
@@ -133,6 +145,9 @@ export default function Adminexpense() {
                             <td style={{ color: getColor(ele.status) }}>{ele.status}</td>
                             <td><button onClick={() => updateStatus(ele.id)}>Approve</button></td>
                             <td><button onClick={() => rejectStatus(ele.id)}>Reject</button></td>
+                            <Link to="/readblob" state={ele}>
+                            <button>View attached file</button>
+                             </Link>
                         </tr>
                     </tbody >
                     ))

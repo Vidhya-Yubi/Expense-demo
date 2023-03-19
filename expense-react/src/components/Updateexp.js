@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useNavigate , useLocation} from "react-router-dom";
+import {  useLocation} from "react-router-dom";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import Header from './Header';
@@ -44,7 +44,7 @@ const Updateexp = () => {
                 'Content-Type': 'multipart/form-data'
               }
             })
-            .then(response => console.log(response.data))
+            .then(response =>{ console.log(response.data)})
             .catch(error => console.log(error));
           };
         // async function update_ex() {
@@ -55,12 +55,12 @@ const Updateexp = () => {
         // }
     return (
         <>
-        <Header />
-        <Link to="/expense">
-            <p>Go Back!</p>
-        </Link>    
+        <Header />   
         
         <div>
+        {/* <Link to="/expense">
+        <button> Go BACK!</button>
+        </Link>  */}
             <div className="acc_v">
             <h2> Enter expense id and details to update:</h2>
         {/* <div className="contain_v"> */}

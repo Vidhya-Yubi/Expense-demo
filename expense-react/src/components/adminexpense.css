@@ -5,6 +5,11 @@
 .head_v>h1{
    padding:10px;
 }
+.add_e{
+    margin-left:750px;
+    padding:10px;
+    margin-right: 3px;
+}
 .head_v>button{
     height:25%;
     width:15%;
@@ -48,10 +53,10 @@ table {
     padding:5px;
     }
     
-    .job_code_gj{
+    /* .job_code_gj{
         color: #006FCB;
     }
     
     .job_status_gj{
         color: #FFB800;
-    }
+    } */

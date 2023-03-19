@@ -2,6 +2,7 @@ import React from 'react'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
 import { useState } from 'react';
+import "./addrep.css"
 
 function Editrep() {
 
@@ -51,10 +52,16 @@ function Editrep() {
     
 
     return (
-        <div className='editcontainer'>
+        <>
+         <Link to="/expreport">
+            <p>Go Back!</p>
+             </Link> 
+        <div className='addcontainer'>
             {/* <button onClick={create_exp}>Add new expenses </button>     */}
-
-            <p>Edit Report Details</p>
+            
+            <div>
+            <b style={{fontSize: '25px'}}>Edit Report Details</b>
+            </div>
             {/* <div>
                 <input type="text" placeholder={repName} name="bookName" onChange={handleChange} />
             </div>
@@ -77,6 +84,7 @@ function Editrep() {
             <button>Add comment</button>
             </Link> */}
         </div>
+        </>
     )
 }
 

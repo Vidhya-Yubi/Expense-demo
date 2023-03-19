@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate , useLocation} from "react-router-dom";
-
+import {  useLocation, Link} from "react-router-dom";
 import axios from "axios";
-
 import './comments.css'
 
 function Comments() {
    const location = useLocation();
     const  exp2 = location.state;
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     let repid = exp2.id    
   // let [addComm, setAddComm] = useState({});
   let [commData, setCommData] = useState([])
@@ -87,7 +85,12 @@ function Comments() {
   // };
 
   return (
+    <>
+    <Link to="/expreport">
+        <button> Go BACK!</button>
+        </Link>
     <div className="main-container">
+      
       {commData.length ? commData.map((text) => (
         // <div>{text.usname}</div>
         <div className="comment-container"><b>{text.usname}</b>: {text.comment}</div>
@@ -100,6 +103,7 @@ function Comments() {
         
       </div>
     </div>
+    </>
   );
 }
 

@@ -40,7 +40,7 @@ class ExpreportController < ApplicationController
             exprep = Expreport.create(
             'reportname': params[:reportname],
             'content': params[:content],
-            'comment': params[:comment],
+            # 'comment': params[:comment],
             'user_id': current_user.id
             )
             puts exprep
@@ -59,7 +59,7 @@ class ExpreportController < ApplicationController
             er.update!(
             'reportname': params[:reportname],
             'content': params[:content],
-            'comment': params[:comment]
+            # 'comment': params[:comment]
             )
             puts er
             render json: {message: "Expreport updated"}, status: 201

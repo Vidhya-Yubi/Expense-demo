@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { useNavigate, Link } from "react-router-dom";
-import Comments from "./Comments";
+import {  Link } from "react-router-dom";
+// import Comments from "./Comments";
 import Header from "./Header";
 import './comments.css'
 // import Header from "../../Dashboard/Header/Header"
@@ -10,7 +10,6 @@ import axios from "axios"
 
 
 export default function Expreport() {
-    const navigate = useNavigate();
 
     let [exprepData, setExprepData] = useState([])
 
@@ -32,9 +31,9 @@ export default function Expreport() {
         <Header />
         {/* <button onClick={logout_v}>Logout</button> 
         <button onClick={create_exp}>Add new expenses </button>     */}
-        <Link to="/adminexpense">
+        {/* <Link to="/adminexpense">
         <button> Go BACK!</button>
-        </Link>  
+        </Link>   */}
       <h2> Hi, Welcome to expense reports!</h2>
       {/* <button style={{marginLeft: '1250px' }}className="comment-button" onClick={view_exp}> View Expenses</button> */}
       <Link to="/addrep">

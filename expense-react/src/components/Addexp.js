@@ -50,7 +50,8 @@ export default function Addexp() {
         'Content-Type': 'multipart/form-data'
       }
     })
-    .then(response => console.log(response.data))
+    .then(response => {console.log(response.data)
+    navigate("/expense")})
     .catch(error => console.log(error));
   };
 
@@ -79,14 +80,16 @@ export default function Addexp() {
   return (
     <>
     <Header />
-    <Link to="/expense">
+    {/* <Link to="/expense">
             <p>Go Back!</p>
-    </Link> 
+    </Link>  */}
     <div className="acc_v">
       
       {/* <div className="contain_v"> */}
         <h2> Add New Expenses:</h2>
         <div className="acc_details">
+        {/* <input type="text" name="expreport_id" readOnly /><br></br> */}
+
           <label> Expense category </label><br></br>
           <input type="text" name="category" onChange={(e) => setCategory(e.target.value)} /><br></br>
           <label> Invoice number </label><br></br>

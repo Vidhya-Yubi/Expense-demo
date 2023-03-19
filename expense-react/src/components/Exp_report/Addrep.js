@@ -1,7 +1,8 @@
 import React from 'react'
 import Axios from "axios";
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import './addrep.css'
 
 function Addrep() {
 
@@ -29,7 +30,11 @@ function Addrep() {
         }
 
 return (
-    <div className='addcontainer'>Add expense Report Details:<br></br>
+    <> 
+    <Link to="/expreport">
+    <p>Go Back!</p>
+     </Link> 
+    <div className='addcontainer'><b style={{fontSize: '25px'}}>Add expense Report Details:</b><br></br>
         <div>
             <label> Report Name </label><br></br>
             <input type="text"  name="reportname" onChange={handleChange} required="true" />
@@ -42,6 +47,7 @@ return (
             <button onClick={sendData}>Add Expense Report</button>
         </div>
     </div>
+    </>
 )
 }
 

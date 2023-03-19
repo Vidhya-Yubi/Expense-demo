@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   #   end 
   # end
   # put "status" , to:"expense#approval"
+  get '/files/:id/download', to: 'status#download', as: 'file_download'
+
   put 'approve/:id', action: :approval, controller: 'expense'
   put 'rejected/:id', action: :rejected, controller: 'expense'
   get 'viewexp/:id', action: :viewexp, controller: 'expreport'

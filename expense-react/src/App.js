@@ -12,7 +12,7 @@ import Comments from './components/Comments';
 // import Fileup from './components/Fileup';
 import Editrep from './components/Exp_report/Editrep';
 import Addrep from './components/Exp_report/Addrep';
-import Addcom from './components/Exp_report/Addcom';
+import Readblob from './components/Readblob';
 
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
         <Route element={<Comments />} path="/comments" />
         <Route element={<Editrep />} path="/editrep" />
         <Route element={<Addrep />} path="/addrep" />
-        {/* <Route element={<Addcom />} path="/addcom" /> */}
+        <Route element={<Readblob />} path="/readblob" />
 
 
       </Routes>
